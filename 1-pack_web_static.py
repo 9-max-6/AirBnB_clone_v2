@@ -6,7 +6,7 @@ Fabric script to create archive
 from datetime import datetime
 from fabric.api import *
 
-
+@task
 def do_pack():
     """
     making an archive best on the web_static folder
