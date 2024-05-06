@@ -38,48 +38,47 @@ sudo chown -R ubuntu /data/
 sudo chgrp -R ubuntu /data/
 
 # Updating the nginx.conf file to include the /hbnb_static location.
-CONFIG="server {\n
+CONFIG="server {
 
-        listen 80 default_server;\n
+        listen 80 default_server;
 
-        listen [::]:80 default_server;\n
+        listen [::]:80 default_server;
 
-        root /var/www/html;\n\n
+        root /var/www/html;
 
+        index index.html index.htm index.nginx-debian.html;
 
+        server_name _;
 
-        index index.html index.htm index.nginx-debian.html;\n
+        location / {
 
-        server_name _;\n
-
-        location / {\n
-
-                add_header X-Served-By 531574-web-02;\n
-                try_files \$uri /\$uri/ /404.html;\n
+                add_header X-Served-By \"$HOSTNAME\";
+                try_files \$uri /\$uri/ /404.html;
 
         }
-        location /hbnb_static {\n
+        location /hbnb_static {
 
-            alias /data/web_static/current/;\n
+            alias /data/web_static/current;
             index index.html;
+            try_files \$uri \$uri/ /hbnb_static/index.html /404.html;
         }
-        location /redirect_me {\n
+        location /redirect_me {
 
-            return 301 https://www.alxafrica.com;\n
+            return 301 https://www.alxafrica.com;
 
-        }\n
+        }
 
-        error_page 404 /404.html;\n
+        error_page 404 /404.html;
 
-        location = /404.html {\n
+        location = /404.html {
 
-            root /var/www/html;\n
+            root /var/www/html;
 
-            internal;\n
+            internal;
 
-        }\n
+        }
 
-}\n"
+}"
 
 if [ ! -w '/etc/nginx/sites-available/default' ]
 then
