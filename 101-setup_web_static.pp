@@ -47,20 +47,20 @@ file { '/data/web_static/shared':
   ensure => 'directory'
 } ->
 
-#create an index file
+# Create an index file
 
 file { '/data/web_static/releases/test/index.html':
   ensure  => 'present',
   content => "Holberton School Puppet\n"
 } ->
 
-#create a symbolic link
+# Create a symbolic link
 file { '/data/web_static/current':
   ensure => 'link',
   target => '/data/web_static/releases/test'
 } ->
 
-#Give ownership of the /data/ folder to the ubuntu user AND group
+# Give ownership of the /data/ folder to the ubuntu user AND group
 exec { 'chown -R ubuntu:ubuntu /data/':
   path => '/usr/bin/:/usr/local/bin/:/bin/'
 }
