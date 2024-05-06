@@ -9,7 +9,7 @@ env.hosts = [
     '54.210.57.216',
     '54.167.150.28'
     ]
-
+hosts = ['54.210.57.216', '54.167.150.28']
 @task
 def do_deploy(c, archive_path):
     """return False if the file at the parth archive_path doesn't exist."""
