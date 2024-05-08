@@ -28,5 +28,5 @@ def do_deploy(archive_path):
         command = 'ln -sf /data/web_static/releases/'
         run(f'{command}{new_archive} current')
     with cd(f'/data/web_static/releases/{new_archive}'):
-        run(f'cp -r * ..')
-        run('rm -r ../web_static')
+        run(f'cp -r web_static/* .')
+        run('rm -r web_static')
