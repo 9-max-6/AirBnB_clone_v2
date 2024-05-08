@@ -37,13 +37,11 @@ sudo ln -s -f '/data/web_static/releases/test/' "$s_link"
 sudo chown -R ubuntu /data/
 sudo chgrp -R ubuntu /data/
 
-# Updating the nginx.conf file to include the /hbnb_static location.
 CONFIG="server {
 
         listen 80 default_server;
-
         listen [::]:80 default_server;
-
+        add_header X-Served-By $HOSTNAME;
         root /var/www/html;
 
         index index.html index.htm index.nginx-debian.html;
@@ -52,7 +50,7 @@ CONFIG="server {
 
         location / {
 
-                add_header X-Served-By \"$HOSTNAME\";
+                
                 try_files \$uri /\$uri/ /404.html;
 
         }

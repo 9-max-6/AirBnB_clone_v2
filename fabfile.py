@@ -4,7 +4,7 @@ Fabric script to create archive
 """
 
 from datetime import datetime
-from fabric.api import local, task
+from fabric.api import *
 
 
 @task
@@ -16,7 +16,7 @@ def do_pack():
         "%Y%m%d%H%M%S") + '.' + 'tgz'
     local('mkdir -p versions')
     create = local(f'tar -cvzf versions/{static_archive} web_static')
-    if create.succeeded is not None:
+    if create is not None:
         return static_archive
     else:
         return None
