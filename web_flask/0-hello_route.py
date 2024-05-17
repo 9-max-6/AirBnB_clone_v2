@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 
 @app.route("/", strict_slashes=False)
-def hello_word():
+def hello_world():
     """
     Function to be called under the route "/"
     """
