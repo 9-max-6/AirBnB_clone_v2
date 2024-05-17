@@ -1,9 +1,10 @@
 #!/usr/bin/python3
-# A script to start a flask web application-> 0.0.0.0:5000
-# Routes / -> displays "Hello HBNB!"
-# Routes /hbnb -> displays "HBNB!"
-# strict_slashes = False
-
+"""
+A script to start a flask web application-> 0.0.0.0:5000
+Routes / -> displays "Hello HBNB!"
+Routes / -> displays "Hello HBNB!"
+strict_slashes = False
+"""
 from flask import Flask
 app = Flask(__name__)
 
