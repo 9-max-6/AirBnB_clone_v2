@@ -7,16 +7,17 @@ from models.state import State
 app = Flask(__name__)
 
 
-@app.route('/cities_by_states', strict_slashes = False)
+@app.route('/cities_by_states', strict_slashes=False)
 def get_cities_by_states():
     """the actor function to be called at
     ath this particular endpoint"""
-    all_states =  storage.all(State)
+    all_states = storage.all(State)
     states_json = get_json(all_states)
     tear_context()
     return (render_template(
         '7-states_list.html',
         states_json=states_json))
+
 
 def get_json(all_states=None):
     """custom function to create a json object for the template"""
@@ -35,9 +36,10 @@ def get_json(all_states=None):
             states_json.append(new_dict)
     return states_json
 
+
 @app.teardown_appcontext
 def tear_context(exception=None):
-    storage.close();
+    storage.close()
 
 
 if __name__ == '__main__':
