@@ -3,7 +3,6 @@
 from flask import Flask
 from flask import render_template
 from models import storage
-from models.state import State
 app = Flask(__name__)
 
 
@@ -11,29 +10,13 @@ app = Flask(__name__)
 def get_cities_by_states():
     """the actor function to be called at
     ath this particular endpoint"""
-    all_states = storage.all(State)
-    states_json = get_json(all_states)
-    sorted_states = sorted(states_json, key=lambda statees_json: states_json['state_name'])
-    tear_context()
+    all_states = storage.all('State')
     return (render_template(
         '7-states_list.html',
-        states_json=sorted_states))
-
-
-def get_json(all_states=None):
-    """custom function to create a json object for the template"""
-    states_json = []
-    if all_states:
-        for state in all_states.values():
-            new_dict = {}
-            new_dict['state_name'] = state.__dict__['name']
-            new_dict['state_id'] = state.__dict__['id']
-            states_json.append(new_dict)
-    return states_json
-
+        states_json=all_states))
 
 @app.teardown_appcontext
-def tear_context(exception=None):
+def tear_context(exception):
     storage.close()
 
 

@@ -33,6 +33,8 @@ class DBStorage:
     def all(self, cls=None):
         """return all objects of the classname cls"""
         if cls:
+            if type(cls) is str:
+                cls = eval(cls)
             dict_objects = {}
             for instance in self.__session.query(cls).all():
                 obj_key = cls.__name__ + '.' + instance.id
