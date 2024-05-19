@@ -13,10 +13,11 @@ def get_cities_by_states():
     ath this particular endpoint"""
     all_states = storage.all(State)
     states_json = get_json(all_states)
+    sorted_states = sorted(states_json, key=lambda statees_json: states_json['state_name'])
     tear_context()
     return (render_template(
         '7-states_list.html',
-        states_json=states_json))
+        states_json=sorted_states))
 
 
 def get_json(all_states=None):
@@ -27,12 +28,6 @@ def get_json(all_states=None):
             new_dict = {}
             new_dict['state_name'] = state.__dict__['name']
             new_dict['state_id'] = state.__dict__['id']
-            new_dict['cities'] = []
-            for city in state.cities:
-                new_city_dict = {}
-                new_city_dict['name'] = city.__dict__['name']
-                new_city_dict['id'] = city.__dict__['id']
-                new_dict['cities'].append(new_city_dict)
             states_json.append(new_dict)
     return states_json
 
