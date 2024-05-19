@@ -11,9 +11,8 @@ def get_cities_by_states():
     """the actor function to be called at
     ath this particular endpoint"""
     all_states = storage.all('State')
-    return (render_template(
-        '8-cities_by_states.html',
-        states_json=all_states))
+    print(all_states)
+    return (render_template('8-cities_by_states.html', states_json=all_states))
 
 
 @app.teardown_appcontext
@@ -22,4 +21,4 @@ def tear_context(exception):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
