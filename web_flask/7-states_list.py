@@ -15,7 +15,7 @@ def get_cities_by_states():
     states_json = get_json(all_states)
     tear_context()
     return (render_template(
-        '8-cities_by_states.html',
+        '7-states_list.html',
         states_json=states_json))
 
 def get_json(all_states=None):
@@ -36,9 +36,9 @@ def get_json(all_states=None):
     return states_json
 
 @app.teardown_appcontext
-def tear_context():
+def tear_context(exception=None):
     storage.close();
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
