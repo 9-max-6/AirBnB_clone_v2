@@ -6,7 +6,7 @@ from models import storage
 app = Flask(__name__)
 
 
-@app.route('/cities_by_states', strict_slashes=False)
+@app.route('/states_list', strict_slashes=False)
 def get_cities_by_states():
     """the actor function to be called at
     ath this particular endpoint"""
