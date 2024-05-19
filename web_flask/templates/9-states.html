@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+        {%- if not states_json %}
+            <H1>Not found!</H1>
+        {%- else %}
+            {%- if len(states_json) == 1 %}
+                <H1>State: {{ states_json[0].name }}</H1>
+                <H3>Cities: </H3>
+                <UL>
+                    {%- for city in states_json[0].cities | sort(attribute="name") %}
+                        <LI>{{ city.id }}: <B>{{ city.name }}</B></LI>
+                    {%- endfor %}
+                </UL>
+            {%- else %}
+                <UL>
+                    {%- for state in states_json.values() | sort(attribute="name") %}
+                        <LI>{{ state.id }}: <B>{{ state.name }}</B>
+                    {%- endfor %}
+                </UL>
+            {% endif %}
+      {%- endif %}
+    </BODY>
+</HTML>

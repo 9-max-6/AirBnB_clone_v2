@@ -11,7 +11,6 @@ def get_cities_by_states():
     """the actor function to be called at
     ath this particular endpoint"""
     all_states = storage.all('State')
-    print(all_states)
     return (render_template('8-cities_by_states.html', states_json=all_states))
 
 
