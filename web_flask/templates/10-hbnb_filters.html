@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/4-common.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/3-footer.css') }}"/>
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles/3-header.css') }}"/>
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles/6-filters.css') }}"/>
+    <link rel="icon" href="{{ url_for('static', filename='images/icon.png')}}" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='images/logo.png')}}" ">
+    </header>
+    <div class="container">
+        <section class="filters">
+            <div class="locations">
+                {%- if len(states) == 1 %}
+                    <h3>State</h3>
+                    <h4>&nbsp;</h4>
+                {%- else %}
+                    <h3>State</h3>
+                    <h4>&nbsp;</h4>
+                {%- endif %}
+                <div class="popover">
+
+                    <ul>
+                    {%- for state in states.values() | sort(attribute="name") %}
+                                <li<b>{{ state.name }}</b></li>
+                        <ul>
+                            {%- for city in state.cities | sort(attribute="name") %}
+                                <li><b>{{ city.name }}</b></li>
+                            {% endfor %}
+                        </ul>
+                    {%- endfor %}
+                </div>
+                        <!-- <li>
+                        Arizona:
+                        <ul>
+                            <li>Page</li>
+                            <li>Page 1</li>
+                        </ul>
+                        
+                    </li>
+                    <li>
+                        California:
+                        <ul>
+                            <li>Page</li>
+                            <li>Page 1</li>
+                        </ul>
+                        
+                    </li> -->
+                </ul>
+            </div>
+            <div class="amenities">
+                {%- if len(amenities) == 1 %}
+                    <h3>Amenity</h3>
+                    <h4>&nbsp;</h4>
+                {%- else %}
+                    <h3>Amenities</h3>
+                    <h4>&nbsp;</h4>
+                {%- endif %}
+                <div class="popover">
+                    <ul>
+                        {%- for amenity in amenities.values() | sort(attribute="name") %}
+                            <li>{{ amenity.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <button>Search</button>
+        </section>
+    </div>
+    <footer>
+        Best school
+    </footer>
+</body>
+</html>
